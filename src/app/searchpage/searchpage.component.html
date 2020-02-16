@@ -1,0 +1,9 @@
+<form>
+    <mat-form-field appearance="outline">
+        <mat-label>Search Band</mat-label>
+        <input matInput placeholder="Ex The Beatles" [(ngModel)]="searchParameter"
+        [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+</form>
+
+<button mat-flat-button color="primary" (click)="search()" >Primary</button>
