@@ -11,18 +11,19 @@ export class SearchpageComponent implements OnInit {
   constructor(private _itunesAPIService: ItunesAPIService) { }
 
   searchParameter: string = "";
+  albums:any=[];
 
   ngOnInit() {
   }
 
   search() {
     if (this.searchParameter) {
-      this.searchParameter=this.searchParameter.split(' ').join('+');
-      this._itunesAPIService.search(this.searchParameter).subscribe(response => {
-        console.log(response);
-      },error => {
-          console.log("Error", error);
-        });
+      this._itunesAPIService.search(this.searchParameter.split(' ').join('+')).subscribe(response => {
+        this.albums=response.results;
+        console.log(this.albums);
+      }, error => {
+        console.log("Error", error);
+      });
     }
   }
 
