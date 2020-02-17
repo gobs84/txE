@@ -1,19 +1,26 @@
-<form>
-    <mat-form-field appearance="outline">
-        <mat-label>Search Band</mat-label>
-        <input matInput placeholder="Ex The Beatles" [(ngModel)]="searchParameter" [ngModelOptions]="{standalone: true}">
-    </mat-form-field>
-</form>
-<button mat-flat-button color="primary" (click)="search()">Primary</button>
+<mat-card>
+    <mat-card-content>
+        <form>
+            <mat-form-field appearance="outline">
+                <mat-label>Search Band</mat-label>
+                <input matInput placeholder="Ex. The Beatles" [(ngModel)]="searchParameter" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+        </form>
+        <button mat-flat-button color="primary" (click)="search()">Primary</button>
+    </mat-card-content>
+</mat-card>
+
+
 
 <mat-grid-list cols="5" rowHeight="1:1">
     <mat-grid-tile *ngFor="let album of this.albums">
         <mat-card class="example-card">
-            <img mat-card-image src={{album.artworkUrl100}} alt="Photo of a Shiba Inu">
+            <img *ngIf="!imageExists(album);" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS33nShangv29mG5rsuWykIulTw6OYPLlzrecYlaTOIrJ9-2mcC&s">
+            <img *ngIf="imageExists(album);" mat-card-image src={{album.artworkUrl100}}>
             <mat-card-content>
                 <p>{{album.collectionName}}</p>
                 <p>{{album.artistName}}</p>
-                <p>{{album.collectionPrice}}</p>
+                <p>{{album.collectionPrice}} $</p>
             </mat-card-content>
         </mat-card>
     </mat-grid-tile>

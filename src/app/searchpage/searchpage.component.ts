@@ -18,12 +18,19 @@ export class SearchpageComponent implements OnInit {
 
   search() {
     if (this.searchParameter) {
-      this._itunesAPIService.search(this.searchParameter.split(' ').join('+')).subscribe(response => {
+      this._itunesAPIService.search(this.searchParameter).subscribe(response => {
         this.albums=response.results;
-        console.log(this.albums);
       }, error => {
         console.log("Error", error);
       });
+    }
+  }
+
+  imageExists(album:any){
+    if(album.artworkUrl100==undefined){
+      return false;
+    }else{
+      return true;
     }
   }
 
